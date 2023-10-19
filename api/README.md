@@ -50,7 +50,8 @@ $
 ## Log de construção
 
 ### branch api-01-criar-projeto - criando o projeto
-```console
+```bash
+# cria projeto javascript para aplicação de api com nestjs e typescript
 $ npx @nestjs/cli new api
 ⚡  We will scaffold your app in a few seconds..
 
@@ -75,9 +76,9 @@ CREATE api/test/jest-e2e.json (183 bytes)
 🚀  Successfully created project api
 👉  Get started with the following commands:
 
-$ cd api
-$ npm run start
+    $ cd api
 
+    $ npm run start:dev
                                          
                           Thanks for installing Nest 🙏
                  Please consider donating to our open collective
@@ -86,9 +87,11 @@ $ npm run start
                                          
                🍷  Donate: https://opencollective.com/nest
 
+# acessa pasta do projeto
 $ cd api
 
-$ npx run start:dev
+# executa a api no modo de desenvolvimento
+[api] $ npx run start:dev
 [09:30:08] Starting compilation in watch mode...
 
 [09:30:10] Found 0 errors. Watching for file changes.
@@ -103,8 +106,9 @@ $ npx run start:dev
 
 
 ### branch api-02-upload - adicionando rotas de upload
-```console
-$ npm i -D @types/multer
+```bash
+# instala pacote que irá tratar os pacotes HTTP com arquivos
+[api] $ npm i -D @types/multer
 
 added 1 package, and audited 675 packages in 3s
 
@@ -113,12 +117,14 @@ added 1 package, and audited 675 packages in 3s
 
 found 0 vulnerabilities
 
-$ npx @nestjs/cli g controller upload
+# cria um controlador para configurar rotas de upload
+[api] $ npx @nestjs/cli g controller upload
 CREATE src/upload/upload.controller.spec.ts (492 bytes)
 CREATE src/upload/upload.controller.ts (101 bytes)
 UPDATE src/app.module.ts (330 bytes)
 
-$ npx run start:dev
+# inicia API em modo de desenvolvimento
+[api] $ npx run start:dev
 [10:10:47] File change detected. Starting incremental compilation...
 
 [10:10:48] Found 0 errors. Watching for file changes.
@@ -137,7 +143,8 @@ $ npx run start:dev
 ```
 
 **testando as novas rotas**
-```console
+```bash
+# usa o aplicativo curl para testar rota de upload de arquivo
 $ curl --verbose -F "arquivo=@./nest-cli.json" http://localhost:3000/upload/arquivo
 *   Trying 127.0.0.1:3000...
 * Connected to localhost (127.0.0.1) port 3000 (#0)
@@ -158,9 +165,10 @@ $ curl --verbose -F "arquivo=@./nest-cli.json" http://localhost:3000/upload/arqu
 < Connection: keep-alive
 < Keep-Alive: timeout=5
 < 
-* Connection #0 to host localhost left intact
+* Connection to host localhost left intact
 {"estado":"ok","dados":{"nome_do_campo":"arquivo","arquivo":{"nome_original":"nest-cli.json","codificacao":"7bit","mimetype":"application/octet-stream","tamanho":171}}}
 
+# usa o aplicativo curl para testar rota de upload de múltiplos arquivos
 $ curl --verbose -F "arquivo=@./nest-cli.json" -F "arquivo=@./tsconfig.json" http://localhost:3000/upload/arquivos
 *   Trying 127.0.0.1:3000...
 * Connected to localhost (127.0.0.1) port 3000 (#0)
@@ -184,6 +192,7 @@ $ curl --verbose -F "arquivo=@./nest-cli.json" -F "arquivo=@./tsconfig.json" htt
 * Connection #0 to host localhost left intact
 {"estado":"ok","dados":{"total":2}}
 
+# usa o aplicativo curl para testar rota de upload de arquivo de imagem png
 $ curl --verbose -F "arquivo=@./nest-cli.json" http://localhost:3000/upload/imagem
 *   Trying 127.0.0.1:3000...
 * Connected to localhost (127.0.0.1) port 3000 (#0)
@@ -207,6 +216,7 @@ $ curl --verbose -F "arquivo=@./nest-cli.json" http://localhost:3000/upload/imag
 * Connection #0 to host localhost left intact
 {"message":"Validation failed (expected type is png)","error":"Bad Request","statusCode":400}
 
+# usa o aplicativo curl para testar rota de upload de arquivo de imagem png
 $ curl --verbose -F "json={'nome': 'exemplo', 'tipo': 'png'}" -F "arquivo=@./diatinf.png" http://localhost:3000/upload/imagem
 *   Trying 127.0.0.1:3000...
 * Connected to localhost (127.0.0.1) port 3000 (#0)
@@ -232,15 +242,30 @@ $ curl --verbose -F "json={'nome': 'exemplo', 'tipo': 'png'}" -F "arquivo=@./dia
 
 $
 ```
+
 **Links**
 - upload em https://docs.nestjs.com/techniques/file-upload
 - download em https://notiz.dev/blog/type-safe-file-downloads
 
 ### branch api-03-perfil - adicionando rotas de perfil
 
-```console
+```bash
+# cria módulo vazio
+[api] $ npx @nestjs/cli g module perfil --no-spec
+CREATE src/perfil/perfil.module.ts (83 bytes)
+UPDATE src/app.module.ts (397 bytes)
 
-$ 
+# cria serviço vazio
+[api] $ npx @nestjs/cli g service perfil --no-spec
+CREATE src/perfil/perfil.service.ts (90 bytes)
+UPDATE src/perfil/perfil.module.ts (163 bytes)
+
+# cria controlador vazio
+[api] $ npx @nestjs/cli g controller perfil --no-spec
+CREATE src/perfil/perfil.controller.ts (101 bytes)
+UPDATE src/perfil/perfil.module.ts (254 bytes)
+
+[api] $ 
 
 ```
 
