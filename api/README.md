@@ -4,7 +4,7 @@
 
 Projeto js criado com o [Nest](https://github.com/nestjs/nest) usando como linguagem o [TypeScript](https://www.typescriptlang.org/).
 
-## Installation
+## Execução e teste
 
 ```bash
 # Instalação
@@ -19,15 +19,35 @@ found 0 vulnerabilities
 # Execução
 $ npm run start:dev
 
+```
 
+```bash
 # Teste de URL
 $ curl --verbose http://localhost:3000/
+*   Trying 127.0.0.1:3000...
+* Connected to localhost (127.0.0.1) port 3000 (#0)
+> GET / HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/8.0.1
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 36
+< ETag: W/"24-CzAKVSqdy0vPki2Fs0ol6AfhWs0"
+< Date: Thu, 19 Oct 2023 14:23:11 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"estado":"ok","dados":"API Online"}
 
 $ 
 
 ```
 
-## Log de execução
+## Log de construção
 
 ### branch api-01-criar-projeto - criando o projeto
 ```console
@@ -219,11 +239,13 @@ $
 ### branch api-03-perfil - adicionando rotas de perfil
 
 ```console
-$ npx @nestjs/cli g controller perfil
-CREATE src/perfil/perfil.controller.spec.ts (492 bytes)
-CREATE src/perfil/perfil.controller.ts (101 bytes)
-UPDATE src/app.module.ts (330 bytes)
 
 $ 
+
+```
+
+### branch api-04-persistencia - adicionando persistência as rotas de perfil
+```console
+$
 
 ```
