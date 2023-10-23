@@ -7,8 +7,8 @@ class PerfilDTO {
 
 class PerfilFotoDTO {
   id?: number;
-  nome: string;
-  url: string;
+  nome?: string;
+  url?: string;
   buffer?: Buffer[];
 }
 

@@ -1,5 +1,6 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { PerfilService } from './perfil.service';
+import { clear } from 'console';
 
 @Controller(':apelido/perfil')
 export class PerfilController {
@@ -17,6 +18,30 @@ export class PerfilController {
     return {
       estado: 'nok',
       mensagem: `perfil do usuário ${parametro.apelido} não encontrado`,
+    };
+  }
+
+  @Post()
+  atualizarPerfil(@Param() parametro: any, @Body() perfil) {
+    if (this.servico.atualizarPerfil(parametro.apelido, perfil)) {
+      return {
+        estado: 'ok',
+      };
+    }
+    return {
+      estado: 'nok',
+    };
+  }
+
+  @Post('/foto/url')
+  atualizarPerfilComUrlDeFoto(@Param() parametro: any, @Body() json) {
+    if (this.servico.atualizarFotoDePerfilComUrl(parametro.apelido, json.url)) {
+      return {
+        estado: 'ok',
+      };
+    }
+    return {
+      estado: 'nok',
     };
   }
 }

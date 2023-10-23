@@ -265,12 +265,85 @@ UPDATE src/perfil/perfil.module.ts (163 bytes)
 CREATE src/perfil/perfil.controller.ts (101 bytes)
 UPDATE src/perfil/perfil.module.ts (254 bytes)
 
-[api] $ 
+# executa API em modo desenvolvimento
+[api] $ npm run start:dev
+[14:32:10] File change detected. Starting incremental compilation...
+
+[14:32:10] Found 0 errors. Watching for file changes.
+
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [NestFactory] Starting Nest application...
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [InstanceLoader] PerfilModule dependencies initialized +15ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [InstanceLoader] AppModule dependencies initialized +0ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [RoutesResolver] AppController {/}: +8ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [RouterExplorer] Mapped {/, GET} route +3ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [RoutesResolver] UploadController {/upload}: +0ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [RouterExplorer] Mapped {/upload/arquivo, POST} route +1ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [RouterExplorer] Mapped {/upload/arquivos, POST} route +1ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [RouterExplorer] Mapped {/upload/imagem, POST} route +1ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [RoutesResolver] PerfilController {/:apelido/perfil}: +0ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [RouterExplorer] Mapped {/:apelido/perfil, GET} route +1ms
+[Nest] 236326  - 19/10/2023, 14:32:11     LOG [NestApplication] Nest application successfully started +1ms
 
 ```
 
+**testando a rota /:aplido/pefil e /:apelido/perfil/foto**
+```bash
+# teste da rota GET /:apelido/perfil
+$ curl --verbose http://localhost:3000/alunos/perfil
+*   Trying 127.0.0.1:3000...
+* Connected to localhost (127.0.0.1) port 3000 (#0)
+> GET /alunos/perfil HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/8.0.1
+> Accept: */*
+> 
+< HTTP/1.1 200 OK
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 165
+< ETag: W/"a5-8o9mdGrYXSjqXaJbfv98Y+FWK60"
+< Date: Thu, 19 Oct 2023 17:36:03 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"estado":"ok","id":1,"nome_social":"alunos","descricao":"conta única dos alunos de infoweb","foto":{"id":1,"url":"https://randomuser.me/api/portraits/lego/1.jpg"}}
+
+# Modificando o conteúdo do perfil
+$ 
+
+# Modificando a foto do conteúdo do perfil com URL externa
+$ curl --verbose -H 'Content-Type: application/json' -d '{"url":"https://randomuser.me/api/portraits/lego/2.jpg"}' http://localhost:3000/alunos/perfil/foto/url
+*   Trying 127.0.0.1:3000...
+* Connected to localhost (127.0.0.1) port 3000 (#0)
+> POST /alunos/perfil/foto/url HTTP/1.1
+> Host: localhost:3000
+> User-Agent: curl/8.0.1
+> Accept: */*
+> Content-Type: application/json
+> Content-Length: 56
+> 
+< HTTP/1.1 201 Created
+< X-Powered-By: Express
+< Content-Type: application/json; charset=utf-8
+< Content-Length: 15
+< ETag: W/"f-zEyU8uspYexNXQo+eM6rxYB/Bc0"
+< Date: Mon, 23 Oct 2023 12:51:52 GMT
+< Connection: keep-alive
+< Keep-Alive: timeout=5
+< 
+* Connection #0 to host localhost left intact
+{"estado":"ok"}
+
+# Modificando a foto do conteúdo do perfil com arquivo
+$ 
+
+```
+
+
 ### branch api-04-persistencia - adicionando persistência as rotas de perfil
-```console
+```bash
+
 $
 
 ```
