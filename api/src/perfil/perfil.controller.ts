@@ -1,4 +1,11 @@
-import { Body, Controller, Get, Param, Post } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Get,
+  Param,
+  Post,
+  UploadedFile,
+} from '@nestjs/common';
 import { PerfilService } from './perfil.service';
 import { clear } from 'console';
 
@@ -22,8 +29,12 @@ export class PerfilController {
   }
 
   @Post()
-  atualizarPerfil(@Param() parametro: any, @Body() perfil) {
-    if (this.servico.atualizarPerfil(parametro.apelido, perfil)) {
+  atualizarPerfil(
+    @Param() parametro: any,
+    @Body() perfil,
+    @UploadedFile() imagem: Express.Multer.File,
+  ) {
+    if (this.servico.atualizarPerfil(parametro.apelido, perfil, imagem)) {
       return {
         estado: 'ok',
       };

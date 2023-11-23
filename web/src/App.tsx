@@ -13,7 +13,7 @@ const App = () => {
 	return (
 		<>
 			<h1>projeto react criado</h1>
-			<form>
+			<form action="http://localhost:3000/alunos/perfil" method="POST">
 				<div>
 					<label htmlFor="apelido">Apelido</label>
 					<input type="text" name="apelido" />
@@ -23,10 +23,11 @@ const App = () => {
 					<input type="text" name="descricao" />
 				</div>
 				<div>
-					<label htmlFor="upload">Imagem do perfil</label>
+					<label htmlFor="url">Imagem do perfil</label>
+					<input type="text" name="url" />
 					<input
 						type="file"
-						name="upload"
+						name="arquivo"
 						accept="image/*"
 						onChange={mudandoImagemPerfil}
 					/>
@@ -38,6 +39,10 @@ const App = () => {
 						name="imagem"
 						src={imagemPerfil && URL.createObjectURL(imagemPerfil)}
 					/>
+				</div>
+				<div>
+					<button type="submit">Salvar foto</button>
+					<button type="submit">Salvar perfil</button>
 				</div>
 			</form>
 		</>

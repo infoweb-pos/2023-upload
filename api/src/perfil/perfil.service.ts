@@ -19,10 +19,17 @@ const procurarPorApelido = (apelido) => {
 };
 @Injectable()
 export class PerfilService {
-  atualizarPerfil(apelido: string, perfil: any) {
+  atualizarPerfil(apelido: string, perfil: any, imagem: any) {
     for (const indice in perfis) {
-      if (perfis[indice].nome_social === perfil.apelido) {
+      if (perfis[indice].nome_social === apelido) {
+        perfis[indice].nome_social = perfil.apelido;
         perfis[indice].descricao = perfil.descricao;
+        if (perfil.arquivo != '') {
+          perfis[indice].foto.buffer = imagem;
+        } else if (perfil.url != '') {
+          perfis[indice].foto.url = perfil.url;
+        }
+        console.log(perfis[indice]);
         return true;
       }
     }
